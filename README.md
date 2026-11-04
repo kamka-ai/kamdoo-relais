@@ -1,6 +1,6 @@
 # Kamdoo notification relay
 
-The relay that carries notifications from your company's Odoo to the **[Kamdoo](https://kamdoo.kamka-it.com)** app, through Apple (APNs) and Google (FCM).
+The relay that carries notifications from your company's Odoo to the **[Kamdoo](https://kamdoo.app)** app, through Apple (APNs) and Google (FCM).
 
 It forwards messages that Odoo has already encrypted for one phone. It **cannot read them**: the decryption key never leaves the phone. It **stores nothing**: no database, nothing written to disk. One file, no dependencies: [`serveur.mjs`](serveur.mjs).
 
@@ -65,13 +65,13 @@ The Odoo side is the free module **[kamdoo_connect](https://github.com/kamka-ai/
 
 ## License
 
-[LGPL-3](LICENSE). Published by [Kamka IT](https://kamka-it.com) · contact@kamka-it.com · [Privacy policy](https://kamdoo.kamka-it.com/privacy.html)
+[LGPL-3](LICENSE). Published by [Kamka IT](https://kamka-it.com) · contact@kamka-it.com · [Privacy policy](https://kamdoo.app/privacy.html)
 
 ---
 
 ## Français
 
-Le relais qui transporte les notifications de l'Odoo de votre société jusqu'à l'app **[Kamdoo](https://kamdoo.kamka-it.com)**, par Apple (APNs) et Google (FCM).
+Le relais qui transporte les notifications de l'Odoo de votre société jusqu'à l'app **[Kamdoo](https://kamdoo.app)**, par Apple (APNs) et Google (FCM).
 
 Il transmet des messages qu'Odoo a déjà chiffrés pour un seul téléphone. Il **ne peut pas les lire** : la clé de déchiffrement ne quitte jamais le téléphone. Il **ne stocke rien** : ni base de données, ni écriture sur disque. Un seul fichier, sans dépendance : [`serveur.mjs`](serveur.mjs).
 
@@ -109,4 +109,4 @@ Côté Odoo : le module gratuit **[kamdoo_connect](https://github.com/kamka-ai/k
 
 ### Licence
 
-[LGPL-3](LICENSE). Édité par [Kamka IT](https://kamka-it.com) · contact@kamka-it.com · [Politique de confidentialité](https://kamdoo.kamka-it.com/confidentialite.html)
+[LGPL-3](LICENSE). Édité par [Kamka IT](https://kamka-it.com) · contact@kamka-it.com · [Politique de confidentialité](https://kamdoo.app/confidentialite.html)
