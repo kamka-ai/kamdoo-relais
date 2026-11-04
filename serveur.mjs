@@ -16,7 +16,14 @@ import http from 'node:http';
 import http2 from 'node:http2';
 
 const PORT = Number(process.env.PORT || 8080);
-const ORIGINE = (process.env.RELAIS_ORIGINE || 'https://push.kamdoo.kamka-it.com').replace(/\/$/, '');
+const sansBarre = (o) => o.trim().replace(/\/$/, '');
+// L'adresse donnée aux nouvelles inscriptions. Les anciennes restent acceptées : un téléphone inscrit avant un
+// changement d'adresse garde la sienne, et l'ERP signe pour elle (audience VAPID).
+const ORIGINE = sansBarre(process.env.RELAIS_ORIGINE || 'https://push.kamdoo.app');
+const ORIGINES = new Set([
+  ORIGINE,
+  ...(process.env.RELAIS_ORIGINES_ANCIENNES ?? 'https://push.kamdoo.kamka-it.com').split(',').filter((o) => o.trim()).map(sansBarre),
+]);
 const SECRET = process.env.RELAIS_SECRET ? Buffer.from(process.env.RELAIS_SECRET, 'base64') : null;
 const APNS = process.env.APNS_CLE && process.env.APNS_CLE_ID && process.env.APNS_EQUIPE
   ? { cle: process.env.APNS_CLE.replace(/\\n/g, '\n'), id: process.env.APNS_CLE_ID, equipe: process.env.APNS_EQUIPE, sujet: process.env.APNS_SUJET || 'com.kamkait.kamdoo' }
@@ -81,7 +88,7 @@ function verifierVapid(entete, attendue) {
   if (!valide) return 'signature VAPID invalide';
   const charge = JSON.parse(deB64u(p).toString());
   const maintenant = Date.now() / 1000;
-  if (charge.aud !== ORIGINE) return 'audience VAPID';
+  if (!ORIGINES.has(charge.aud)) return 'audience VAPID';
   if (!(charge.exp > maintenant && charge.exp < maintenant + 25 * 3600)) return 'jeton VAPID expiré';
   return null;
 }

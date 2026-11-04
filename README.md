@@ -38,6 +38,7 @@ Run it behind a reverse proxy that does not log its requests. Ours is Traefik wi
 |---|:-:|---|
 | `RELAIS_SECRET` | yes | 32 bytes, base64 (`openssl rand -base64 32`): seals the phone's token |
 | `RELAIS_ORIGINE` | no | Public address of the relay, e.g. `https://push.example.com` |
+| `RELAIS_ORIGINES_ANCIENNES` | no | Former public addresses, comma-separated, still accepted as VAPID audience so phones registered before a move keep receiving notifications |
 | `APNS_CLE` | yes | Content of the Apple `.p8` key (Apple Push Notifications service) |
 | `APNS_CLE_ID` | no | ID of that key (10 characters) |
 | `APNS_EQUIPE` | no | Apple team ID |
