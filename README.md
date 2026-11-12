@@ -14,16 +14,14 @@ nothing. One file, no dependencies: [`serveur.mjs`](serveur.mjs).**
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"primaryColor": "#FFFFFF", "primaryTextColor": "#141838", "primaryBorderColor": "#207CA9", "lineColor": "#5A5E8C", "secondaryColor": "#F3F5F8", "tertiaryColor": "#F3F5F8", "clusterBkg": "#F3F5F8", "clusterBorder": "#E1E4EE", "titleColor": "#23296B", "edgeLabelBackground": "#F3F5F8"}}}%%
 flowchart LR
-  phone["Kamdoo Mobile<br/>holds the private key"]
   odoo[("Your Odoo<br/>encrypts and signs")]
   relay["kamdoo-relais<br/>checks, forwards"]
   apple["Apple APNs"]
   google["Google FCM"]
-  phone -- "1. register" --> relay
-  phone -- "2. delivery address, public key" --> odoo
-  odoo -- "3. encrypted message" --> relay
-  relay --> apple & google
-  apple & google -- "4. decrypted on the phone" --> phone
+  phone["Kamdoo Mobile<br/>decrypts"]
+  odoo -- "encrypted" --> relay
+  relay -- "as it is" --> apple & google
+  apple & google --> phone
   classDef cle fill:#23296B,stroke:#23296B,color:#FFFFFF
   classDef surface fill:#FFFFFF,stroke:#207CA9,color:#141838
   classDef base fill:#FFFFFF,stroke:#5A5E8C,color:#141838
